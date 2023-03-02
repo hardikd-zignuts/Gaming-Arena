@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <div className="container mt-3">
+      <div className="container ">
         <GameGallery />
       </div>
       <Footer />

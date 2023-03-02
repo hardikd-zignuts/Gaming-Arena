@@ -13,7 +13,7 @@ const GameGallery = () => {
   }, []);
 
   return (
-    <div className="d-flex flex-wrap gap-3 align-items-center justify-content-center my-3">
+    <div id="gallery" className=" d-flex flex-wrap gap-3 align-items-center justify-content-center my-3">
       {filterData.map((item, index) => {
         if (item.title === undefined) {
           return false;
