@@ -5,7 +5,7 @@ import { fetchGame } from "../redux/gameActions";
 import { useDispatch, useSelector } from "react-redux";
 
 const GameGallery = () => {
-  const fetchedData = useSelector((state) => state.fetchedData);
+  const filterData = useSelector((state) => state.filterData);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchGame());
@@ -14,8 +14,8 @@ const GameGallery = () => {
 
   return (
     <div className="d-flex flex-wrap gap-3 align-items-center justify-content-center my-3">
-      {fetchedData.map((item, index) => {
-        if (index === 0) {
+      {filterData.map((item, index) => {
+        if (item.title === undefined) {
           return false;
         }
         return <GameCard key={`id${index}`} {...item} />;

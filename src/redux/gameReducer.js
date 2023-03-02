@@ -14,14 +14,17 @@ const initialData = {
 const gameReducer = (state = initialData, action) => {
     switch (action.type) {
         case APPLY_FILTER:
+            const newData = [...state.fetchedData].filter(item => action.payLoad.includes(item.platform))
+
             return {
                 ...state,
-                selectedFilterPlatform: action.payLoad
+                filterData: newData
             }
         case RESET_FILTER:
             return {
                 ...state,
-                test: state.test + 100
+                // platformList: [],
+                filterData: state.fetchedData
             }
 
         case FETCH_GAMES_REQUEST:
@@ -35,6 +38,7 @@ const gameReducer = (state = initialData, action) => {
                 loading: false,
                 fetchedData: action.payLoad,
                 platformList: action.platformData,
+                filterData: state.fetchedData,
                 error: ''
             }
         case FETCH_GAMES_FAILURE:

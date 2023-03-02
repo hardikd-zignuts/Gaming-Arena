@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { applyFilter } from "../redux/gameActions";
+import { applyFilter, resetFilter } from "../redux/gameActions";
 
 const SideModal = ({ show, handleClose, setShow }) => {
   const platformList = useSelector((state) => state.platformList);
@@ -27,11 +27,19 @@ const SideModal = ({ show, handleClose, setShow }) => {
   };
 
   const handleApply = () => {
+    dispatch(resetFilter());
     dispatch(applyFilter(filterInfo.response));
     setShow(false);
+    setFilterInfo({
+      response: [],
+    });
   };
   const handleReset = () => {
     setShow(false);
+    dispatch(resetFilter());
+    setFilterInfo({
+      response: [],
+    });
   };
   return (
     <>

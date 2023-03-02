@@ -3,13 +3,19 @@ import logo from "../assets/img/logo.svg";
 import { useState } from "react";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { SideModal } from "./index";
+import { useDispatch } from "react-redux";
+import { resetFilter } from "../redux/gameActions";
 // import { ReactSearchAutocomplete } from "react-search-autocomplete";
 // import PLATFORM_DATA from "../assets/data/ApiPlatform";
 
 function NavBar() {
   const [show, setShow] = useState(false);
+  const dispatch = useDispatch();
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    setShow(true);
+    dispatch(resetFilter());
+  };
   // const items = PLATFORM_DATA;
   // const handleOnSearch = (string, results) => {
   //   console.log(string, results);

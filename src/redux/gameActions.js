@@ -8,10 +8,9 @@ export const applyFilter = selectedPlatform => {
         payLoad: selectedPlatform
     }
 }
-export const resetFilter = selectedPlatform => {
+export const resetFilter = () => {
     return {
-        type: RESET_FILTER,
-        payLoad: selectedPlatform
+        type: RESET_FILTER
     }
 }
 
