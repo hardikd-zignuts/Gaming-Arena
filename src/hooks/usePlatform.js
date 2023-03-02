@@ -1,13 +1,12 @@
-import API_DATA from "./ApiData"
 
-const giveUniquePlatform = (data) => {
+const usePlatform = (data) => {
 
     const removedUndefined = data.filter((item) => {
-        return item.title !== undefined
+        return item.platform !== undefined
     })
 
     const platformArr = removedUndefined.map((item, index) => {
-        return item.title
+        return item.platform
     })
 
     const uniquePlatformNames = platformArr.filter((item, index) => {
@@ -21,7 +20,6 @@ const giveUniquePlatform = (data) => {
         }
     })
     return finalDataWithId
-}
-const PLATFORM_DATA = giveUniquePlatform(API_DATA)
 
-export default PLATFORM_DATA
+}
+export default usePlatform

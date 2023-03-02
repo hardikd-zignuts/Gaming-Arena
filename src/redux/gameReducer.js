@@ -4,6 +4,7 @@ const initialData = {
     loading: false,
     error: '',
     test: 10,
+    selectedFilterPlatform: [],
     fetchedData: [],
     filterData: [],
     platformList: [],
@@ -15,7 +16,7 @@ const gameReducer = (state = initialData, action) => {
         case APPLY_FILTER:
             return {
                 ...state,
-                test: state.test - 1
+                selectedFilterPlatform: action.payLoad
             }
         case RESET_FILTER:
             return {
@@ -33,6 +34,7 @@ const gameReducer = (state = initialData, action) => {
                 ...state,
                 loading: false,
                 fetchedData: action.payLoad,
+                platformList: action.platformData,
                 error: ''
             }
         case FETCH_GAMES_FAILURE:

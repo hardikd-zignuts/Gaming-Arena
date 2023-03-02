@@ -3,6 +3,7 @@ import { Footer, GameGallery, NavBar } from './components/index'
 
 
 function App() {
+
   return (
     <div className="App">
       <NavBar />

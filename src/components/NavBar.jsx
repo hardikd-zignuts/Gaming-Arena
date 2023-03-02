@@ -1,36 +1,35 @@
 // import Button from 'react-bootstrap/Button';
 import logo from "../assets/img/logo.svg";
+import { useState } from "react";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { SideModal } from "./index";
-import { useState } from "react";
-import { ReactSearchAutocomplete } from "react-search-autocomplete";
-import PLATFORM_DATA from "../assets/data/ApiPlatform";
+// import { ReactSearchAutocomplete } from "react-search-autocomplete";
+// import PLATFORM_DATA from "../assets/data/ApiPlatform";
 
 function NavBar() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  // const items = PLATFORM_DATA;
+  // const handleOnSearch = (string, results) => {
+  //   console.log(string, results);
+  // };
 
-  const items = PLATFORM_DATA;
-  const handleOnSearch = (string, results) => {
-    console.log(string, results);
-  };
+  // const handleOnHover = (result) => {
+  //   console.log(result);
+  // };
 
-  const handleOnHover = (result) => {
-    console.log(result);
-  };
+  // const handleOnSelect = (item) => {
+  //   console.log(item);
+  // };
 
-  const handleOnSelect = (item) => {
-    console.log(item);
-  };
-
-  const formatResult = (item) => {
-    return (
-      <>
-        <span style={{ display: "block", textAlign: "left" }}>{item.name}</span>
-      </>
-    );
-  };
+  // const formatResult = (item) => {
+  //   return (
+  //     <>
+  //       <span style={{ display: "block", textAlign: "left" }}>{item.name}</span>
+  //     </>
+  //   );
+  // };
 
   return (
     <>
@@ -41,15 +40,19 @@ function NavBar() {
         </div>
         <div className="search-area">
           <form>
-            <ReactSearchAutocomplete
+            {/* <ReactSearchAutocomplete
               items={items}
               onSearch={handleOnSearch}
               onHover={handleOnHover}
               onSelect={handleOnSelect}
               autoFocus
               formatResult={formatResult}
+            /> */}
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Enter game title"
             />
-            {/* <input type="text" className="form-control" placeholder="Enter game title" /> */}
           </form>
         </div>
       </nav>
@@ -61,7 +64,7 @@ function NavBar() {
           Platform
           <RiArrowDownSLine />
         </button>
-        <SideModal show={show} handleClose={handleClose} />
+        <SideModal setShow={setShow} show={show} handleClose={handleClose} />
       </div>
     </>
   );

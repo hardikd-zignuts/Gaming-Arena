@@ -1,5 +1,6 @@
 import { APPLY_FILTER, FETCH_GAMES_FAILURE, FETCH_GAMES_REQUEST, FETCH_GAMES_SUCCESS, RESET_FILTER } from "./gameTypes";
 import axios from "axios";
+import usePlatform from '../hooks/usePlatform'
 
 export const applyFilter = selectedPlatform => {
     return {
@@ -19,10 +20,11 @@ export const fetchGamesRequest = () => {
         type: FETCH_GAMES_REQUEST
     }
 }
-export const fetchGamesSuccess = games => {
+export const fetchGamesSuccess = (games, platform) => {
     return {
         type: FETCH_GAMES_SUCCESS,
-        payLoad: games
+        payLoad: games,
+        platformData: platform
     }
 }
 export const fetchGamesFailure = error => {
@@ -42,7 +44,8 @@ export const fetchGame = () => {
         axios.get(URL)
             .then(response => {
                 const gameData = response.data
-                dispatch(fetchGamesSuccess(gameData))
+                const platform = usePlatform(gameData)
+                dispatch(fetchGamesSuccess(gameData, platform))
             })
             .catch(error => {
                 const errorMsg = error.message
