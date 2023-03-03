@@ -1,26 +1,30 @@
 nav {
-    .nav-logo {
-        color: white;
-        font-size: 1.3rem;
-        font-weight: 600;
+  .nav-logo {
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 600;
 
-        img {
-            padding: 0px 5px;
-            min-height: 42px;
-        }
+    img {
+      padding: 0px 5px;
+      min-height: 42px;
     }
+  }
 
-    .search-area {
-        min-width: 40%;
+  .search-area {
+    min-width: 40%;
 
-        @media(max-width:768px) {
-            width: 100%;
-        }
+    @media (max-width: 768px) {
+      width: 100%;
     }
+  }
 
-    .sort-btn {
-        @include flex;
-        justify-content: center;
-        margin: auto;
-    }
+  .sort-btn {
+    @include flex;
+    justify-content: center;
+    margin: auto;
+  }
+}
+
+.drop-list {
+  background-color: gray;
 }

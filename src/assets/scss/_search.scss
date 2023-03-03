@@ -1,0 +1,35 @@
+.search-container {
+  // width: 280px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #5e5e5e5e;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.dropdown:empty {
+  border: none;
+}
+
+.dropdown-row {
+  cursor: pointer;
+  text-align: start;
+  margin: 2px 0;
+  padding: 0px 15px;
+}
+.dropdown-row:hover {
+  background-color: rgba(204, 204, 204, 0.228);
+}
+
+input {
+  width: 220px;
+}
+
+.search-inner {
+  display: flex;
+}
