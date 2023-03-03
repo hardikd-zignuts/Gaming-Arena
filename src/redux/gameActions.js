@@ -1,4 +1,4 @@
-import { APPLY_FILTER, FETCH_GAMES_FAILURE, FETCH_GAMES_REQUEST, FETCH_GAMES_SUCCESS, RESET_FILTER } from "./gameTypes";
+import { APPLY_FILTER, APPLY_SEARCH_FILTER, FETCH_GAMES_FAILURE, FETCH_GAMES_REQUEST, FETCH_GAMES_SUCCESS, RESET_FILTER } from "./gameTypes";
 import axios from "axios";
 import usePlatform from '../hooks/usePlatform'
 
@@ -6,6 +6,12 @@ export const applyFilter = selectedPlatform => {
     return {
         type: APPLY_FILTER,
         payLoad: selectedPlatform
+    }
+}
+export const applySearchFilter = str => {
+    return {
+        type: APPLY_SEARCH_FILTER,
+        payLoad: str
     }
 }
 export const resetFilter = () => {

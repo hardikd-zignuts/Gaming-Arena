@@ -1,46 +1,41 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
+import { applySearchFilter, resetFilter } from "../redux/gameActions";
 
 const Search = () => {
   const filterData = useSelector((state) => state.filterData);
+  const dispatch = useDispatch();
   const [value, setValue] = useState("");
-  const [demo, setDemo] = useState([]);
-
-  // const handleOnChange = (e) => {
-  //   const { value } = e.target;
-  //   const sorted = filterData.filter((item, index) => {
-  //     if (index === 0) {
-  //       return false;
-  //     } else {
-  //       return item.title.toLowerCase() === value.toLowerCase();
-  //     }
-  //   });
-  //   console.log(sorted);
-  // };
+  const [finalFilterArr, setFinalFilterArr] = useState([]); // selected list array
+  const [isShow, setIsShow] = useState(true);
 
   const handleOnChange = (e) => {
+    setIsShow(true);
     setValue(e.target.value);
 
-    let temp = filterData
-      .filter((item) => {
-        if (item.title !== undefined) {
-          const searchTerm = value.toLowerCase();
-          const title = item.title.toLowerCase();
-          return title.startsWith(searchTerm);
-        } else {
-          return null;
-        }
-      })
-      .map((item) => {
-        return <div>{item.title}</div>;
-      });
-    setDemo(temp);
+    const filterArr = filterData.filter((item) => {
+      if (item.title !== undefined) {
+        const searchTerm = value.toLowerCase();
+        const title = item.title.toLowerCase();
+        return title.startsWith(searchTerm);
+      } else {
+        return null;
+      }
+    });
+    setFinalFilterArr(filterArr);
   };
 
   const onSearch = (searchTerm) => {
     setValue(searchTerm);
-    console.log("search ", searchTerm);
+  };
+  const showSortedItems = (e) => {
+    e.preventDefault();
+    console.log(value);
+    console.log(finalFilterArr);
+    dispatch(applySearchFilter(value));
+    setIsShow(false);
+    setValue("");
   };
 
   return (
@@ -51,41 +46,31 @@ const Search = () => {
             type="text"
             className="form-control mx-2"
             placeholder="Enter game title"
+            value={value}
+            onFocus={() => dispatch(resetFilter())}
             onChange={handleOnChange}
           />
           <Button
             className="btn btn-outline-success"
             variant="light"
-            type="submit"
+            onClick={showSortedItems}
           >
             Search
           </Button>
         </div>
         <div className="dropdown w-75 mx-auto">
-          {console.log(demo)}
-          {demo}
-          {
-            // filterData.filter((item) => {
-            //   if (item.title !== undefined) {
-            //     const searchTerm = value.toLowerCase();
-            //     const title = item.title.toLowerCase();
-            //     return title.startsWith(searchTerm);
-            //   } else {
-            //     return null;
-            //   }
-            // })
-            // .map((item) => {
-            //   return (
-            //     <div
-            //       onClick={() => onSearch(item.title)}
-            //       className="dropdown-row"
-            //       key={item.title}
-            //     >
-            //       {item.title}
-            //     </div>
-            //   );
-            // })
-          }
+          {isShow &&
+            finalFilterArr.map((item, index) => {
+              return (
+                <div
+                  key={`id${index}`}
+                  onClick={() => onSearch(item.title)}
+                  className="dropdown-row"
+                >
+                  {item.title}
+                </div>
+              );
+            })}
         </div>
       </div>
     </div>
